@@ -1,0 +1,149 @@
+{
+  "name": "Signl Cycle Feedback",
+  "active": true,
+  "id": "5er2OeF8FTEYTkkH",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "tags": [],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Signl Cycle Feedback",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What kind of feedback?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Bug Report"
+                  },
+                  {
+                    "option": "It's Working!"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Your name"
+            },
+            {
+              "fieldLabel": "Which part of the app?",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Check-in"
+                  },
+                  {
+                    "option": "Onboarding"
+                  },
+                  {
+                    "option": "Cycle view"
+                  },
+                  {
+                    "option": "Insights"
+                  },
+                  {
+                    "option": "History"
+                  },
+                  {
+                    "option": "Settings"
+                  },
+                  {
+                    "option": "Sign in / Account"
+                  },
+                  {
+                    "option": "Clinical report"
+                  },
+                  {
+                    "option": "Overall experience"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Overall experience (1 = frustrated, 5 = loved it)",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "5- Loved it!"
+                  },
+                  {
+                    "option": "4- Liked it!"
+                  },
+                  {
+                    "option": "3-Good/Neutral"
+                  },
+                  {
+                    "option": "2-Don't like it"
+                  },
+                  {
+                    "option": "1-Frustrated"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Tell us more",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Screenshot or photo",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b6dc19fb-01e3-4035-9fc2-5e5b276af19b",
+      "name": "On form submission",
+      "webhookId": "89764e3d-cb61-48a6-a0c0-f49b246a8614",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "sendTo": "dynamackops@gmail.com",
+        "subject": "=Signl Cycle Feedback — {{ $json[\"What kind of feedback?\"] }} ",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<style>\n  body { background: #0a0908; margin: 0; padding: 30px 0; font-family: Georgia, serif; }\n  .wrap { max-width: 520px; margin: 0 auto; background: #131110; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; }\n  .header { background: #0a0908; padding: 28px 32px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }\n  .logo { font-size: 13px; font-style: italic; color: #c9954a; letter-spacing: 1px; margin-bottom: 4px; }\n  .logo span { color: #ede6db; font-style: normal; }\n  .header-sub { font-size: 11px; color: #6b5f52; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 2px; }\n  .body { padding: 28px 32px; }\n  .row { margin-bottom: 20px; }\n  .label { font-size: 9px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 2px; color: #c9954a; margin-bottom: 5px; }\n  .value { font-size: 14px; color: #ede6db; line-height: 1.6; font-family: Georgia, serif; }\n  .value.muted { color: #a89880; font-size: 13px; }\n  .divider { height: 1px; background: rgba(255,255,255,0.05); margin: 20px 0; }\n  .tag { display: inline-block; background: rgba(201,149,74,0.12); border: 1px solid rgba(201,149,74,0.28); border-radius: 20px; padding: 3px 10px; font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; color: #c9954a; }\n  .tag.bug { background: rgba(201,86,104,0.12); border-color: rgba(201,86,104,0.28); color: #c95668; }\n  .footer { background: #0a0908; padding: 16px 32px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 9px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1.5px; color: #6b5f52; }\n</style>\n</head>\n<body>\n<div class=\"wrap\">\n  <div class=\"header\">\n    <div class=\"logo\">Signl <span>Cycle</span></div>\n    <div class=\"header-sub\">New feedback received</div>\n  </div>\n  <div class=\"body\">\n    <div class=\"row\">\n      <div class=\"label\">Type</div>\n      <div class=\"value\">\n        <span class=\"tag {{$json['What kind of feedback?'] === 'Bug report' ? 'bug' : ''}}\">\n          {{$json['What kind of feedback?']}}\n        </span>\n      </div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"row\">\n      <div class=\"label\">From</div>\n      <div class=\"value\">{{$json['Your name'] || 'Anonymous'}}</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"row\">\n      <div class=\"label\">App area</div>\n      <div class=\"value muted\">{{$json['Which part of the app?'] || 'Not specified'}}</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"row\">\n      <div class=\"label\">Experience rating</div>\n      <div class=\"value\">{{$json['Overall experience (1 = frustrated, 5 = loved it)'] || '—'}} / 5</div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"row\">\n      <div class=\"label\">Feedback</div>\n      <div class=\"value\">{{$json['Tell us more']}}</div>\n    </div>\n  </div>\n  <div class=\"footer\">\n    signlcycle.netlify.app · Dynamack Operations LLC\n  </div>\n</div>\n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "4b92eae2-d4b0-49fd-8a7e-f8b835fe95e2",
+      "name": "Send a message",
+      "webhookId": "55d8b407-28e7-4bc9-ac2d-179fd1362438"
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "name": "Client Intake — Job Search Digest",
+  "active": true,
+  "id": "hdw5AUO5kYJm3jYU",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  },
+  "tags": [],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq - Generate Config": {
+      "main": [
+        [
+          {
+            "node": "Extract Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Config": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Groq - Generate Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Dynamack - Job Search Disgest Intake Form",
+        "formDescription": "Stop spending hours searching job boards. Tell us what you're looking for and we'll set up an automation that does it for you — every single morning, before you even wake up.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Your Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email Address",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "1. Job Titles You're Targeting",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Management"
+                  },
+                  {
+                    "option": "Coordinator"
+                  },
+                  {
+                    "option": "Specialist"
+                  },
+                  {
+                    "option": "Analyst"
+                  },
+                  {
+                    "option": "Director"
+                  },
+                  {
+                    "option": "Executive"
+                  },
+                  {
+                    "option": "Consultant"
+                  },
+                  {
+                    "option": "Associate"
+                  },
+                  {
+                    "option": "Other (specify in Q.11)"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "2. Target Industries",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Technology"
+                  },
+                  {
+                    "option": "Healthcare"
+                  },
+                  {
+                    "option": "Finance"
+                  },
+                  {
+                    "option": "Education"
+                  },
+                  {
+                    "option": "Retail/E-commerce"
+                  },
+                  {
+                    "option": "Nonprofit"
+                  },
+                  {
+                    "option": "Government"
+                  },
+                  {
+                    "option": "Media/Marketing"
+                  },
+                  {
+                    "option": "Legal"
+                  },
+                  {
+                    "option": "Real Estate"
+                  },
+                  {
+                    "option": "Manuafacturing"
+                  },
+                  {
+                    "option": "Open to Any"
+                  },
+                  {
+                    "option": "Other (specify in Q.11)"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "3. Work Preference",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Remote"
+                  },
+                  {
+                    "option": "Hybrid"
+                  },
+                  {
+                    "option": "In-person"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "4. Years of Experience",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "0-2 years"
+                  },
+                  {
+                    "option": "3-5 years"
+                  },
+                  {
+                    "option": "6-9 years"
+                  },
+                  {
+                    "option": "10+ years"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "5. Top Skills & Tools",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Project management"
+                  },
+                  {
+                    "option": "CRM software"
+                  },
+                  {
+                    "option": "Accounting Software"
+                  },
+                  {
+                    "option": "Data Analysis"
+                  },
+                  {
+                    "option": "Automation Tools"
+                  },
+                  {
+                    "option": "Customer Service"
+                  },
+                  {
+                    "option": "Marketing "
+                  },
+                  {
+                    "option": "Sales"
+                  },
+                  {
+                    "option": "HR/People Ops"
+                  },
+                  {
+                    "option": "Writing/Communications"
+                  },
+                  {
+                    "option": "Design"
+                  },
+                  {
+                    "option": "Software Development"
+                  },
+                  {
+                    "option": "Other (please specify in Q.11)"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "6. Seniority Level",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Entry Level"
+                  },
+                  {
+                    "option": "Mid Level"
+                  },
+                  {
+                    "option": "Senior Level"
+                  },
+                  {
+                    "option": "Lead/Manager"
+                  },
+                  {
+                    "option": "Director"
+                  },
+                  {
+                    "option": "Executive"
+                  },
+                  {
+                    "option": "Consultant/Fractional"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "7. Minimum Salary",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "$40K+"
+                  },
+                  {
+                    "option": "$50K+"
+                  },
+                  {
+                    "option": "$60K+"
+                  },
+                  {
+                    "option": "$70K+"
+                  },
+                  {
+                    "option": "$80K+"
+                  },
+                  {
+                    "option": "$90K+"
+                  },
+                  {
+                    "option": "$100K+"
+                  },
+                  {
+                    "option": "$120K+"
+                  },
+                  {
+                    "option": "No preference"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "8. Job Type",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Full- time"
+                  },
+                  {
+                    "option": "Part- time"
+                  },
+                  {
+                    "option": "Contract"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "9. Digest Delivery Time",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "6AM"
+                  },
+                  {
+                    "option": "7AM"
+                  },
+                  {
+                    "option": "8AM"
+                  },
+                  {
+                    "option": "9AM"
+                  },
+                  {
+                    "option": "10AM"
+                  },
+                  {
+                    "option": "12PM"
+                  },
+                  {
+                    "option": "1PM"
+                  },
+                  {
+                    "option": "2PM"
+                  },
+                  {
+                    "option": "3PM"
+                  },
+                  {
+                    "option": "4PM"
+                  },
+                  {
+                    "option": "5PM"
+                  },
+                  {
+                    "option": "6PM"
+                  },
+                  {
+                    "option": "7PM"
+                  },
+                  {
+                    "option": "8PM"
+                  },
+                  {
+                    "option": "9PM"
+                  },
+                  {
+                    "option": "10PM"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "10. Minimum AI Score",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Show all (5+)"
+                  },
+                  {
+                    "option": "Good matches (6+)"
+                  },
+                  {
+                    "option": "Strong matches (7+)"
+                  },
+                  {
+                    "option": "Top matches only (8+)"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "11. Anything else I should know?",
+              "placeholder": "certifications, specific companies to target or avoid, etc."
+            },
+            {
+              "fieldLabel": "12. Upload Your Resume",
+              "fieldType": "file",
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        16,
+        16
+      ],
+      "id": "836d5833-1118-4653-8b7e-06efb206e23e",
+      "name": "On form submission",
+      "webhookId": "87d5e24c-d2db-4a90-b4f7-7590209fe6b5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer {{GROQ_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.1-8b-instant\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are an automation consultant assistant for Dynamack Operations LLC. Based on client intake form responses and resume, generate a ready-to-use workflow configuration. Output ONLY a clean formatted summary with these exact sections: 1) GROQ SCORING PROMPT 2) KEYWORD FILTERS 3) INDEED SEARCH TERMS 4) SCHEDULE TIME 5) EMAIL ADDRESS 6) SCORE THRESHOLD. Be specific and build-ready.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"={{ $json.userContent }}\"\n    }\n  ],\n  \"max_tokens\": 1000,\n  \"temperature\": 0\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "fc947976-ee15-44a5-91a4-d30badc0a2c7",
+      "name": "Groq - Generate Config"
+    },
+    {
+      "parameters": {
+        "jsCode": "const content = items[0].json.choices[0].message.content;\n\nreturn [{\n  json: {\n    config: content,\n    client_name: $('On form submission').first().json['Your Name'],\n    client_email: $('On form submission').first().json['Email Address']\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "3d4d5267-9226-45b5-ba81-fe1244a727c1",
+      "name": "Extract Config"
+    },
+    {
+      "parameters": {
+        "sendTo": "dynamackops@gmail.com",
+        "subject": "=New Client Intake — {{ $json.client_name }}",
+        "message": "=<h2>New Job Search Digest Request</h2> <p><strong>Client:</strong> {{ $json.client_name }}</p> <p><strong>Email:</strong> {{ $json.client_email }}</p> <hr/> <pre>{{ $json.config }}</pre>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "3527f7b1-fbf1-4a09-9114-99c978ffa788",
+      "name": "Send a message",
+      "webhookId": "3106ed4c-0e8d-42c3-aa4b-911bb8c05f80"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "12__Upload_Your_Resume",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d6222b4e-c59f-49a8-95dc-96c41e77f5e3",
+      "name": "Extract from File"
+    }
+  ]
+}

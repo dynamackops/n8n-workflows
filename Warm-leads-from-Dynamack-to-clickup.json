@@ -1,0 +1,99 @@
+{
+  "name": "Warm leads from Dynamack. to clickup",
+  "active": true,
+  "id": "TFzYycwgM4OwJzO8",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "tags": [],
+  "connections": {
+    "Create a task": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook from Dynamack quiz": {
+      "main": [
+        [
+          {
+            "node": "Create a task",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook from Dynamack quiz').item.json.email }}",
+        "subject": "Your Dynamack Ops Quiz Results: ",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n</head>\n<body style=\"margin:0; padding:0; background:#F5F0E8; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;\">\n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#F5F0E8; padding:40px 20px;\">\n  <tr><td align=\"center\">\n    <table width=\"580\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:580px; width:100%;\">\n\n      <!-- HEADER -->\n      <tr><td style=\"background:#2C1A0E; padding:32px 40px 28px; text-align:center;\">\n        <p style=\"margin:0 0 4px; font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#C9A84C;\">Dynamack Operations</p>\n        <h1 style=\"margin:0; font-family:Georgia, serif; font-size:26px; font-weight:400; color:#F5F0E8; line-height:1.3;\">Your Automation Readiness Results</h1>\n      </td></tr>\n\n      <!-- SCORE BLOCK -->\n      <tr><td style=\"background:#3D2314; padding:28px 40px; text-align:center; border-bottom:1px solid #4A2E1A;\">\n        <p style=\"margin:0 0 6px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C;\">Your Score</p>\n        <p style=\"margin:0 0 4px; font-family:Georgia, serif; font-size:52px; font-weight:400; color:#F5F0E8; line-height:1;\">{{ $json.score }}<span style=\"font-size:22px; color:#8B6355;\">/100</span></p>\n        <p style=\"margin:6px 0 0; font-family:Georgia, serif; font-size:20px; color:#C9A84C; font-style:italic;\">{{ $json.tier }}</p>\n      </td></tr>\n\n      <!-- BODY -->\n      <tr><td style=\"background:#FDFAF4; padding:36px 40px;\">\n        <p style=\"margin:0 0 20px; font-size:15px; color:#2C1A0E; line-height:1.7;\">Hi {{ $json.name }},</p>\n        <p style=\"margin:0 0 24px; font-size:14px; color:#5C3D2E; line-height:1.75;\">Thanks for taking the Dynamack Automation Readiness Quiz. Based on your answers, here's where you stand — and exactly what we'd recommend for your business right now.</p>\n\n        <!-- DIVIDER -->\n        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:24px;\">\n          <tr><td style=\"border-top:1px solid #E8D5A0;\"></td></tr>\n        </table>\n\n        <p style=\"margin:0 0 14px; font-size:10px; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:#C9A84C;\">Recommended for you</p>\n\n        <!-- REC CARDS -->\n        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:8px;\">\n          <tr><td style=\"background:#F5F0E8; border-left:3px solid #C9A84C; padding:16px 20px; margin-bottom:8px;\">\n            <p style=\"margin:0 0 4px; font-family:Georgia, serif; font-size:17px; color:#2C1A0E;\">{{ $json.recommendations.split(',')[0] }}</p>\n            <p style=\"margin:0; font-size:12px; color:#8B6355; line-height:1.6;\">Based on your readiness score, this is the highest-impact place to start.</p>\n          </td></tr>\n        </table>\n        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:28px;\">\n          <tr><td style=\"background:#F5F0E8; border-left:3px solid rgba(201,168,76,0.4); padding:16px 20px;\">\n            <p style=\"margin:0 0 4px; font-family:Georgia, serif; font-size:17px; color:#2C1A0E;\">{{ $json.recommendations.split(',')[1] }}</p>\n            <p style=\"margin:0; font-size:12px; color:#8B6355; line-height:1.6;\">A natural next step once your foundation is in place.</p>\n          </td></tr>\n        </table>\n\n        <!-- DIVIDER -->\n        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:28px;\">\n          <tr><td style=\"border-top:1px solid #E8D5A0;\"></td></tr>\n        </table>\n\n        <p style=\"margin:0 0 14px; font-size:14px; color:#5C3D2E; line-height:1.75;\">The next step is simple — book a free 20-minute strategy session and we'll walk through what this looks like for your specific business. No pitch, no pressure. Just clarity.</p>\n\n        <!-- CTA BUTTON -->\n        <table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0 0 28px;\">\n          <tr><td style=\"background:#2C1A0E; padding:14px 32px;\">\n            <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSftRngfQ-IXqGqEDQP0GEWVemzxM9OpMB05Q-qyzlXGX_dWkg/viewform\" style=\"font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none;\">Book My Strategy Session → </a>\n          </td></tr>\n        </table>\n\n        <p style=\"margin:0; font-size:13px; color:#8B6355; line-height:1.7;\">Questions before you book? Reply directly to this email — I read every one.<br><br>— Jasmine<br><span style=\"color:#C9A84C;\">Dynamack Operations</span></p>\n      </td></tr>\n\n      <!-- FOOTER -->\n      <tr><td style=\"background:#2C1A0E; padding:20px 40px; text-align:center;\">\n        <p style=\"margin:0 0 4px; font-size:11px; color:rgba(245,240,232,0.4);\">Dynamack Operations LLC · dynamackops@gmail.com</p>\n        <p style=\"margin:0; font-size:11px; color:rgba(245,240,232,0.25);\">You're receiving this because you completed our Automation Readiness Quiz.</p>\n      </td></tr>\n\n    </table>\n  </td></tr>\n</table>\n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        160
+      ],
+      "id": "fb64982f-c669-41c3-91c0-361e79430121",
+      "name": "Send a message",
+      "webhookId": "16f62850-d378-408f-af77-8ef061373b17"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "team": "90141120847",
+        "space": "90145021226",
+        "folderless": true,
+        "list": "901415762052",
+        "name": "=Potential warm lead- {{ $json.name }}",
+        "additionalFields": {
+          "assignees": [
+            204172598
+          ],
+          "content": "={{ $json.name }}\n{{ $json.email }}\n{{ $json.tier }}\n{{ $json.intent }}\n{{ $json.recommendations }}\n\n{{ $json.submitted_at }}\n",
+          "priority": 3,
+          "status": "identified",
+          "tags": [
+            "client outreach"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "18483ad4-ca8a-404c-aa15-079318f9ff6a",
+      "name": "Create a task"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5ed72345-2ffe-41b1-b781-d8c84aaf8f4c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6e22ac94-48d8-4596-9019-0f9dab298b6d",
+      "name": "Webhook from Dynamack quiz",
+      "webhookId": "5ed72345-2ffe-41b1-b781-d8c84aaf8f4c",
+      "alwaysOutputData": true
+    }
+  ]
+}
